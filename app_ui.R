@@ -58,6 +58,24 @@ analysis1_tab <- tabPanel(
   )
 )
 
+# Analysis 2 - Life Expectancy Variation
+analysis2_tab <- tabPanel(
+  "Life Expectancy Comparison",
+  fluidPage(
+    titlePanel("Life Expectancy Analysis"),
+    sidebarLayout(
+      sidebarPanel(
+        numericInput("num_top_countries", "Top Countries:", value = 5, min = 1, max = 100),
+        numericInput("num_bottom_countries", "Bottom Countries:", value = 5, min = 1, max = 100)
+      ),
+      mainPanel(
+        textOutput("description"),
+        plotOutput("life_expectancy_plot")
+      )
+    )
+  )
+)
+
 # Sidebar for Analysis 2 and 3 (shared if identical)
 analysis23_sidebar <- sidebarPanel(
   helpText("Interactive visualization of data."),
@@ -87,18 +105,6 @@ intro_tab <- tabPanel(
     sidebarLayout(
       intro_sidebar,
       intro_main_panel
-    )
-  )
-)
-
-# Analysis 2 - SAM
-analysis2_tab <- tabPanel(
-  "Analysis 2",
-  fluidPage(
-    titlePanel("Analysis of Variable 2"),
-    sidebarLayout(
-      analysis23_sidebar,
-      analysis23_main_panel
     )
   )
 )
