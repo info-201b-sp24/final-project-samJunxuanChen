@@ -40,7 +40,34 @@ server <- function(input, output) {
         theme_minimal()
     }
   })
-  
+
+}
+
+# Chart 3-Aaron
+data <- read.csv("~/Desktop/info/GlobalPopulationTrends(2016-2022)2.csv", stringsAsFactors = FALSE)
+data$Total.Population <- as.numeric(gsub(",", "", data$Total.Population))
+data$Urban.Population <- as.numeric(gsub(",", "", data$Urban.Population))
+
+data <- data[data$Year != 2017,]
+
+server <- function(input, output) {
+  output$plot <- renderPlotly({
+    
+    filtered_data <- data[data$Year == input$year, ]
+    
+    p <- ggplot(filtered_data, aes(x = Total.Population, y = Urban.Population)) +
+      geom_point() +
+      scale_x_log10() +  
+      scale_y_log10() +  
+      labs(title = "Scatter Plot of Total Population vs. Urban Population",
+           x = "Total Population (log scale)",
+           y = "Urban Population (log scale)") +
+      theme_minimal()
+    
+    ggplotly(p, tooltip = c("x", "y"))
+  })
+}
+
   # Chart 2-SAM
   
   #Text description
@@ -99,3 +126,4 @@ server <- function(input, output) {
       theme(legend.position = "top")
   })
 }
+
