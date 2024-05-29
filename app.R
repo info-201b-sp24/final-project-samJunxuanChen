@@ -1,6 +1,7 @@
 # install.packages("shiny")
 # Load libraries
 library("shiny")
+library("dplyr")
 
 # Source server and UI
 source("app_server.R")
