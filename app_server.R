@@ -43,7 +43,8 @@ server <- function(input, output) {
 }
 
 # Chart 3-Aaron
-data <- read.csv("~/Desktop/info/GlobalPopulationTrends(2016-2022)2.csv", stringsAsFactors = FALSE)
+data <- read.csv("DATA/Global Population Trends(2016-2022).csv", stringsAsFactors = FALSE)
+
 data$Total.Population <- as.numeric(gsub(",", "", data$Total.Population))
 data$Urban.Population <- as.numeric(gsub(",", "", data$Urban.Population))
 
