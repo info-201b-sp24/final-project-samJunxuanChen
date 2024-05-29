@@ -105,12 +105,20 @@ analysis2_tab <- tabPanel(
 
 # Analysis 3 - AARON
 analysis3_tab <- tabPanel(
-  "Analysis 3",
+  "Total vs. Urban Population",
   fluidPage(
-    titlePanel("Analysis of Variable 3"),
+    titlePanel("Analysis of Total vs. Urban Population"),
     sidebarLayout(
-      analysis23_sidebar,
-      analysis23_main_panel
+      sidebarPanel(
+        selectInput("yearSelect3", "Select Year:", choices = unique(data$Year)),
+        width = 4  # Adjust width as needed to match the layout of other tabs
+      ),
+      mainPanel(
+        plotOutput("populationPlot", width = "80%", height = 600),
+        p(style="margin-top: 30px", "This plot illustrates the relationship between the total population and the urban population across different countries for the selected year. Understanding this relationship helps to analyze urbanization trends and their impacts on resource allocation and urban planning."),
+        p(style="margin-top: 10px", "By examining how urban population scales with total population, we can identify regions that are undergoing rapid urbanization and might face sustainability challenges. This analysis also helps to understand the spatial distribution of population and its implications for economic development and infrastructure."),
+        p(style="margin-top: 10px", "Note: The scatter plot provided reflects data variability and may help in identifying patterns of urban sprawl or consolidation characteristic of different regions around the world. Such insights are invaluable for policymakers and urban planners who aim to enhance the quality of life and ensure balanced regional development.")
+      )
     )
   )
 )
