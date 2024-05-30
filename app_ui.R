@@ -2,7 +2,6 @@ library(ggplot2)
 library(shiny)
 library(readr)
 library(shinythemes)
-# Load this library if you prefer read_csv
 
 # Store data
 global_population <- read_csv("DATA/Global Population Trends(2016-2022).csv") %>%
@@ -76,24 +75,20 @@ analysis2_tab <- tabPanel(
   )
 )
 
-# Sidebar for Analysis 2 and 3 (shared if identical)
-analysis23_sidebar <- sidebarPanel(
-  helpText("Interactive visualization of data."),
-  actionButton("btn", "Press me")
-)
-
-# Main panel for Analysis 2 and 3 (shared if identical)
-analysis23_main_panel <- mainPanel(
-  verbatimTextOutput("text")
-)
 
 # Conclusion main panel
 conclusion_main_panel <- mainPanel(
-  h3("Key Takeaways"),
-  p("Here are the major insights derived from our analysis."),
-  p("1. Insight one..."),
-  p("2. Insight two..."),
-  p("3. Insight three...")
+  p("First, our analysis of average life expectancy in different countries over the period 2018-2021 shows that the twenty countries with the lowest life expectancy are all located on the African continent, where none of these countries has a life expectancy of more than 60 years. This finding suggests that these countries need to improve economic stability, quality of life, local government strategic decision-making, resource allocation, and social planning. In contrast, the 20 countries with the highest life expectancy are located outside the African continent, with 14 in Europe, three in Asia, two in Oceania, and one in the Americas. These countries have great education, health, and social systems. Resource allocation and social planning play a crucial role in determining life expectancy.
+"),
+  p("Second, our analysis shows no simple positive correlation between population density and birth rates. Although some high-density countries have higher birth rates, the overall distribution of the data suggests that a significant variability exists in birth rates, regardless of the country's population density. This suggests a greater complexity and diversity of factors affecting population density, including economic, cultural, and policy influences. This finding is of great value to policymakers when making health care and urban planning decisions.
+"),
+  p("Third, the analysis of the relationship between the total population and the urban population reveals a strong positive correlation. As a country's total population increases, its urban population also tends to increase. This finding implies that more populous countries usually have larger urban populations, possibly due to better economic opportunities, more developed infrastructure, or more active urban growth policies. However, we also noticed some deviations from this trend, with some countries having smaller urban populations than expected for their overall population. These deviations might result from geographical constraints, different stages of economic development, or specific national policies affecting urban development.
+"),
+  p("These findings contribute significantly to our understanding of global population dynamics and emphasize the importance of resource allocation and social planning in increasing life expectancy and promoting urbanization. The most important insight is that equitable resource allocation and effective social planning can significantly improve a country's average life expectancy and quality of life. This insight is crucial for policymakers, urban planners, and socioeconomic researchers. In a broader perspective, these insights are not limited to improving different countries' social and economic conditions, but can also have a global positive impact. For example, international cooperation and resource sharing effectively address global health and development inequalities. Developed countries can support developing countries' health and education systems through knowledge sharing, thereby improving overall global health.
+"),
+  p("In addition, we should consider the critical role of scientific and technological progress and innovation in increasing life expectancy and promoting urbanization. For example, public health interventions and resource allocation can be made with greater precision using artificial intelligence technology, which has been in the public eye a lot lately, to maximize policy impact. Through real-time monitoring and data analysis, governments and related organizations can respond more quickly to demographic changes and health needs, avoiding wasted resources and unfair distribution."),
+  p("In summary, our analysis reveals key issues in current global population dynamics and proposes several innovative solutions. We promise to realize a more equitable and prosperous global society through international cooperation and scientific and technological innovation.
+"),
 )
 
 # Introduction tab
@@ -116,8 +111,8 @@ analysis3_tab <- tabPanel(
     titlePanel("Analysis of Total vs. Urban Population"),
     sidebarLayout(
       sidebarPanel(
-        selectInput("yearSelect3", "Select Year:", choices = unique(data$Year)),
-        width = 4  # Adjust width as needed to match the layout of other tabs
+        selectInput("yearSelect3", "Select Year:", choices = unique(global_population$Year[global_population$Year != 2017])),
+        width = 4 
       ),
       mainPanel(
         plotOutput("populationPlot", width = "80%", height = 600),
@@ -134,7 +129,10 @@ conclusion_tab <- tabPanel(
   "Conclusion",
   fluidPage(
     titlePanel("Summary of Findings"),
-    conclusion_main_panel,
+    fluidRow(
+      column(7, img(style="width: 100%;", src = "population_image3.png")),
+    ),
+    conclusion_main_panel
   )
 )
 
