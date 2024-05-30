@@ -1,4 +1,4 @@
-# Title of Your Final Project Here 
+# Global Population Dynamics: The Role of Birth, Death, and Life Expectancy
 ## INFO 201 "Foundational Skills for Data Science"
 
 Authors: Aaron Chen (chen716@uw.edu), Sam Junxuan Chen (junxuan@uw.edu), David Sung Ha Hyun (davyhyun@uw.edu)
